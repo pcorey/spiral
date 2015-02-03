@@ -20,7 +20,7 @@ html, body {
   font-size: 100vh;
   transform-style: flat;
   transform-origin: 0 0;
-  transition: transform 1s linear;
+  transition: transform 1s ease-in;
   width: #{$phi}em;
   height: 1em;
 
