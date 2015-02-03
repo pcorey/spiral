@@ -1,0 +1,70 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,900);
+
+$phi: 1.618033988749895;
+$phiInv: 1/$phi;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  
+  font-family: 'Lato';
+  font-size: 20px;
+}
+
+.golden {
+  margin:0 auto;
+  position: relative;
+  background: white;
+  font-size: 100vh;
+  transform-style: flat;
+  transform-origin: 0 0;
+  transition: transform 1s linear;
+  width: #{$phi}em;
+  height: 1em;
+
+  *:not(.golden-panel) {
+    font-size: 1rem;
+  }
+  .content {
+    margin: 20px;
+    color: #333;
+    h1 {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 4rem;
+    }
+    p {
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+  }
+  .golden-panel {
+    transform-origin: 0 0;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+  }
+  
+  $sel: "";
+  $max: 15;
+  @for $i from 1 through $max {
+    @if $i == 1 {
+      $sel: "& > .golden-panel";
+    }
+    @else {
+      $sel: $sel + " > .golden-panel";
+    }
+    #{$sel} {
+      background-color: hsl($i/$max * 360%, 80%, 80%);
+      @if ($i != 1) {
+        transform: rotateZ(90deg) translateY(#{$phi * -1em}) scale($phiInv);
+      }
+      @else {
+        transform: rotateZ(0deg) translateY(0em) scale(1);
+      }
+    }
+  }
+}
